@@ -170,7 +170,7 @@ fi
 # ZSTD_BIN="$EXE_PREFIX$ZSTD_BIN"
 
 # assertions
-[ -n "$ZSTD_BIN" ] || die "zstd not found at $ZSTD_BIN! \n Please define ZSTD_BIN pointing to the zstd binary. You might also consider rebuilding zstd follwing the instructions in README.md"
+[ -n "$ZSTD_BIN" ] || die "zstd not found at $ZSTD_BIN! \n Please define ZSTD_BIN pointing to the zstd binary. You might also consider rebuilding zstd following the instructions in README.md"
 [ -n "$DATAGEN_BIN" ] || die "datagen not found at $DATAGEN_BIN! \n Please define DATAGEN_BIN pointing to the datagen binary. You might also consider rebuilding zstd tests following the instructions in README.md. "
 println "\nStarting playTests.sh isWindows=$isWindows EXE_PREFIX='$EXE_PREFIX' ZSTD_BIN='$ZSTD_BIN' DATAGEN_BIN='$DATAGEN_BIN'"
 
@@ -755,6 +755,13 @@ datagen -g15000 > tmp_files/tmp1
 datagen -g129000 > tmp_files/tmp2
 datagen -g257000 > tmp_files/tmp3
 zstd --show-default-cparams -f -r tmp_files
+rm -rf tmp*
+
+println "test : show compression parameters in verbose mode"
+datagen > tmp
+zstd -vv tmp 2>&1 | \
+grep -q -E -- "--zstd=wlog=[[:digit:]]+,clog=[[:digit:]]+,hlog=[[:digit:]]+,\
+slog=[[:digit:]]+,mml=[[:digit:]]+,tlen=[[:digit:]]+,strat=[[:digit:]]+"
 rm -rf tmp*
 
 println "\n===>  Advanced compression parameters "

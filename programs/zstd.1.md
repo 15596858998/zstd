@@ -171,7 +171,7 @@ the last one takes effect.
     compression speed hit.
     This feature does not work with `--single-thread`. You probably don't want
     to use it with long range mode, since it will decrease the effectiveness of
-    the synchronization points, but your milage may vary.
+    the synchronization points, but your mileage may vary.
 * `-C`, `--[no-]check`:
     add integrity check computed from uncompressed data (default: enabled)
 * `--[no-]content-size`:
@@ -208,7 +208,7 @@ the last one takes effect.
     disable input and output checks. Allows overwriting existing files, input
     from console, output to stdout, operating on links, block devices, etc.
 * `-c`, `--stdout`:
-    force write to standard output, even if it is the console
+    write to standard output (even if it is the console)
 * `--[no-]sparse`:
     enable / disable sparse FS support,
     to make files with many zeroes smaller on disk.
